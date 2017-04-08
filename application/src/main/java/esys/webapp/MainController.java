@@ -1,5 +1,7 @@
 package esys.webapp;
 
+import esys.webapp.db.LocalRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.User;
@@ -10,18 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 
+    @Autowired
     private Facebook facebook;
+    @Autowired
     private ConnectionRepository connectionRepository;
-
-    public MainController(Facebook fb, ConnectionRepository cr) {
-        this.facebook = fb;
-        this.connectionRepository = cr;
-    }
+    @Autowired
+    private LocalRepository localRepository;
 
     @RequestMapping(value = "/")
-    public String  mainView(Model model) {
+    public String mainView(Model model) {
 
-        Boolean userLoged = true;
+        boolean userLoged = true;
 
         if (connectionRepository.findPrimaryConnection(Facebook.class) == null) {
             userLoged = false;
@@ -32,6 +33,7 @@ public class MainController {
         }
 
         model.addAttribute("userLoged", userLoged);
+        model.addAttribute("locals", localRepository.findAll());
 
         return "main";
     }
