@@ -12,11 +12,9 @@
         <div class="container">
 
             <div class="jumbotron text-center">
-                <h1 class="display-3">Something's wrong...</h1>
+                <h1 class="display-3" th:text="${local.getName()}">name</h1>
 
-                <p>
-                    <a class="btn btn-primary btn-lg" href="/" role="button">Get back to main page</a>
-                </p>
+                <p class="lead text-muted" th:text="${local.getAddress()}">address</p>
             </div>
 
         </div>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-toggleable-md navbar-light bg-faded fixed-top" th:fragment="navbar">
+            <div class="container">
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="navbar-brand" href="/">Have a place!</a>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <ul class="navbar-nav mr-auto">
+                    </ul>
+
+                    <th:block th:switch="${user.isLoged()}">
+                        <span class="navbar-text" th:case="true">Signed in as <a href="#" class="navbar-link" th:text="${user.getInfo().name}">userName</a></span>
+
+                        <form class="form-inline mt-2 mt-md-0" action="/connect/facebook" method="POST" th:case="false">
+                            <input type="hidden" name="scope" value="user_posts" />
+                            <button type="submit" class="btn btn-outline-primary my-2 my-sm-0">Login with Facebook</button>
+                        </form>
+                    </th:block>
+
+                </div>
+
+            </div>
+        </nav>
+
+    </body>
+</html>

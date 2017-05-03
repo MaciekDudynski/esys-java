@@ -1,4 +1,4 @@
-package esys.webapp;
+package esys.webapp.controllers;
 
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.ConnectionRepository;
