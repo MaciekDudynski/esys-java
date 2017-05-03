@@ -1,33 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
-        <title>eSys-Java</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css"
-              th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"
-              rel="stylesheet" media="screen" />
+        <title>Have a place!</title>
+        <object th:include="fragments/head :: head" th:remove="tag" />
     </head>
 
     <body>
 
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-toggleable-md bg-faded fixed-top">
             <div class="container">
 
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/">eSys-Java</a>
-                </div>
+                <a class="navbar-brand" href="/">Have a place!</a>
 
-                <div th:switch="${userLoged}">
-                    <div class="navbar-right" th:case="true">
-                        <p class="navbar-text">Signed in as <a href="#" class="navbar-link" th:text="${facebookProfile.name}">userName</a></p>
-                    </div>
+                <div class="collapse navbar-collapse show" aria-expanded="true">
 
-                    <div class="navbar-right" th:case="false">
-                        <form action="/connect/facebook" method="POST">
+                    <ul class="navbar-nav mr-auto"></ul>
+
+                    <th:block th:switch="${userLoged}">
+                        <p class="navbar-text my-2 my-md-0" th:case="true">Signed in as <a href="#" class="navbar-link" th:text="${facebookProfile.name}">userName</a></p>
+
+                        <form class="form-inline my-2 my-md-0" action="/connect/facebook" method="POST" th:case="false">
                             <input type="hidden" name="scope" value="user_posts" />
-                            <button type="submit" class="btn btn-primary navbar-btn">Login with Facebook</button>
+                            <button type="submit" class="btn btn-outline-primary">Login with Facebook</button>
                         </form>
-                    </div>
+                    </th:block>
+
                 </div>
 
             </div>
@@ -35,20 +32,31 @@
 
         <div class="container">
 
-            <div class="panel panel-default">
-                <div class="panel-heading">All registered locals</div>
-                <table class="table">
-                    <tr>
-                        <th>#</th>
-                        <th>Local</th>
-                        <th>Address</th>
-                    </tr>
-                    <tr th:each="local : ${locals}">
-                        <td th:text="${local.getId()}">id</td>
-                        <td th:text="${local.getName()}">name</td>
-                        <td th:text="${local.getAddress()}">address</td>
-                    </tr>
-                </table>
+            <div class="jumbotron text-center">
+                <h1 class="display-3">Have a place!</h1>
+
+                <p class="lead text-muted">
+                    Do you want to go out somewhere? Are you afraid that you won't have a place to sit?<br />
+                    You are in a perfect place!<br />
+                    Just find a place, book it and it will wait for you.
+                </p>
+            </div>
+
+            <div class="row mb-3" th:each="local : ${locals}">
+
+                <div class="col-10">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title" th:text="${local.getName()}">name</h4>
+                            <h6 class="card-subtitle mb-2 text-muted" th:text="${local.getAddress()}">address</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary btn-block" style="height:100%">More informations</button>
+                </div>
+
             </div>
 
         </div>
