@@ -7,28 +7,7 @@
 
     <body>
 
-        <nav class="navbar navbar-toggleable-md bg-faded fixed-top">
-            <div class="container">
-
-                <a class="navbar-brand" href="/">Have a place!</a>
-
-                <div class="collapse navbar-collapse show" aria-expanded="true">
-
-                    <ul class="navbar-nav mr-auto"></ul>
-
-                    <th:block th:switch="${userLoged}">
-                        <p class="navbar-text my-2 my-md-0" th:case="true">Signed in as <a href="#" class="navbar-link" th:text="${facebookProfile.name}">userName</a></p>
-
-                        <form class="form-inline my-2 my-md-0" action="/connect/facebook" method="POST" th:case="false">
-                            <input type="hidden" name="scope" value="user_posts" />
-                            <button type="submit" class="btn btn-outline-primary">Login with Facebook</button>
-                        </form>
-                    </th:block>
-
-                </div>
-
-            </div>
-        </nav>
+        <nav th:replace="fragments/navbar :: navbar" />
 
         <div class="container">
 
@@ -54,7 +33,7 @@
                 </div>
 
                 <div class="col-2">
-                    <button type="button" class="btn btn-primary btn-block" style="height:100%">More informations</button>
+                    <a type="button" th:href="${'/local/' + local.getId()}" class="btn btn-primary btn-block" style="height:100%">More informations</a>
                 </div>
 
             </div>
