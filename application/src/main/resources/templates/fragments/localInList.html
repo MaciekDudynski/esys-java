@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+    </head>
+
+    <body>
+
+        <th:block th:fragment="localInList">
+            <div class="col-12">
+                <a th:href="${'/local/' + local.getId() + '/'}" class="no-underline">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title default-black-text" th:text="${local.getName()}">name</h4>
+                            <h6 class="card-subtitle mb-2 text-muted" th:text="${local.getAddress()}">address</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </th:block>
+
+    </body>
+</html>

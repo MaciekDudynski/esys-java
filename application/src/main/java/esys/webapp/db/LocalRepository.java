@@ -10,4 +10,8 @@ public interface LocalRepository extends CrudRepository<Local, Long> {
 
     List<Local> findByName(String name);
 
+    List<Local> findByCity(String city);
+
+    List<Local> findByOwnerId(String ownerId);
+
 }

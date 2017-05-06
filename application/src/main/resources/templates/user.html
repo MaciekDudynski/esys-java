@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Have a place!</title>
+        <object th:include="fragments/head :: head" th:remove="tag" />
+    </head>
+
+    <body>
+
+        <th:block th:replace="fragments/navbar :: navbar" />
+
+        <div class="container">
+
+            <div class="jumbotron text-center">
+                <h1 class="display-3" th:text="${user.getFullName()}">userName</h1>
+
+                <p class="lead text-muted">
+                    Something here...
+                </p>
+            </div>
+
+            <h4>Your locals:</h4>
+            <div class="row mb-3" th:each="local : ${locals}">
+                <th:block th:replace="fragments/localInList :: localInList" />
+            </div>
+
+            <h4>Create local:</h4>
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-block">
+                            <form action="/user/addLocal/" method="POST">
+                                <div class="form-group row">
+                                    <label for="new-local-name" class="col-2 col-form-label">Local name</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="text" th:value="${newLocal.name}" name="name" placeholder="Local name" id="new-local-name" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="new-local-street" class="col-2 col-form-label">Street name</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="text" th:value="${newLocal.street}" name="street" placeholder="Street name" id="new-local-street" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="new-local-number" class="col-2 col-form-label">Number</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="number" th:value="${newLocal.number}" name="number" placeholder="Number" id="new-local-number">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="new-local-postal-code" class="col-2 col-form-label">Postal code</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="text" th:value="${newLocal.postalCode}" name="postalCode" placeholder="Postal code" id="new-local-postal-code">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="new-local-city" class="col-2 col-form-label">City</label>
+                                    <div class="col-10">
+                                        <input class="form-control" type="text" th:value="${newLocal.city}" name="city" placeholder="City" id="new-local-city" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="new-local-description" class="col-2 col-form-label">Description</label>
+                                    <div class="col-10">
+                                        <textarea class="form-control" rows="5" th:text="${newLocal.description}" name="description" placeholder="Description" id="new-local-description" />
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline-success btn-lg btn-block" style="height:100%" type="submit">Add local</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+</html>

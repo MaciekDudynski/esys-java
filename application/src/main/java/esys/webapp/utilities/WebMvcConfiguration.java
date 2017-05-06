@@ -1,6 +1,5 @@
-package esys.webapp;
+package esys.webapp.utilities;
 
-import esys.webapp.utilities.CustomHandlerInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

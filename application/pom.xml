@@ -74,6 +74,12 @@
             <artifactId>jquery</artifactId>
             <version>3.2.0</version>
         </dependency>
+        <!-- HTML PARSER -->
+        <dependency>
+            <groupId>net.sourceforge.nekohtml</groupId>
+            <artifactId>nekohtml</artifactId>
+            <version>1.9.22</version>
+        </dependency>
         <!-- SPRING BOOT - TEST-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

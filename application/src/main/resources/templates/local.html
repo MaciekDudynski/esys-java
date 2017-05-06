@@ -7,7 +7,7 @@
 
     <body>
 
-        <nav th:replace="fragments/navbar :: navbar" />
+        <th:block th:replace="fragments/navbar :: navbar" />
 
         <div class="container">
 
@@ -15,6 +15,33 @@
                 <h1 class="display-3" th:text="${local.getName()}">name</h1>
 
                 <p class="lead text-muted" th:text="${local.getAddress()}">address</p>
+            </div>
+
+            <div class="row">
+                <div class="col-5">
+                    <div class="card mb-3">
+                        <div class="card-block">
+                            <h4 class="card-title">Description</h4>
+                            <p class="card-text" th:text="${local.getDescription()}">descritpion</p>
+                        </div>
+                    </div>
+                    <th:block th:switch="${userHasPrivileges}">
+                        <th:block th:case="true">
+                            <div class="card mb-3">
+                                <div class="card-block">
+                                    <h4 class="card-title">Settings</h4>
+                                    <form th:action="${'/local/' + local.getId() + '/delete/'}" method="POST">
+                                        <button class="btn btn-outline-danger btn-lg btn-block" type="submit">Delete local</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </th:block>
+                        <th:block th:case="false"></th:block>
+                    </th:block>
+                </div>
+                <div class="col-7">
+                    <!-- tutaj miejsca -->
+                </div>
             </div>
 
         </div>

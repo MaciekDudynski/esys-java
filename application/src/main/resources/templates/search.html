@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Have a place!</title>
+        <object th:include="fragments/head :: head" th:remove="tag" />
+    </head>
+
+    <body>
+
+        <th:block th:replace="fragments/navbar :: navbar" />
+
+        <div class="container">
+
+            <div class="jumbotron text-center">
+                <h1 class="display-3">Search for a place!</h1>
+
+                <form action="/search/" method="POST">
+                    <div class="row">
+                        <div class="col-6 offset-2">
+                            <input class="form-control form-control-lg" type="text" name="text" th:value="${searchingText}" placeholder="Local name or City">
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-outline-success btn-lg btn-block" style="height:100%" type="submit">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <th:block th:switch="${localsByName.size()}">
+                <th:block th:case="0"></th:block>
+                <th:block th:case="*">
+                    <h4 th:text="${'Locals found with name ' + searchingText}">Locals found with that name</h4>
+                    <div class="row mb-3" th:each="local : ${localsByName}">
+                        <th:block th:replace="fragments/localInList :: localInList" />
+                    </div>
+                </th:block>
+            </th:block>
+
+            <th:block th:switch="${localsByCity.size()}">
+                <th:block th:case="0"></th:block>
+                <th:block th:case="*">
+                    <h4 th:text="${'Locals found in ' + searchingText}">Locals found in that city</h4>
+                    <div class="row mb-3" th:each="local : ${localsByCity}">
+                        <th:block th:replace="fragments/localInList :: localInList" />
+                    </div>
+                </th:block>
+            </th:block>
+
+        </div>
+
+    </body>
+</html>

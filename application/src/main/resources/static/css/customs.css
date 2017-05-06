@@ -3,3 +3,11 @@ body {
     min-height: 75rem;
     padding-top: 4.5rem;
 }
+
+.default-black-text {
+    color: #292b2c;
+}
+.no-underline {
+    text-decoration: none !important;
+}
+
